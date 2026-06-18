@@ -1,10 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>phantom Plaza</title>
+<meta charset="UTF-8">
+<title>phantom plaza</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    background:#000;
+    height:100vh;
+    font-family:Arial;
+}
+
+/* Background Image */
+
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url("cemetery.jpg") center center/cover no-repeat;
+}
+
+/* Blood Moon */
+
+.moon{
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:#900;
+    border-radius:50%;
+    top:60px;
+    right:100px;
+    box-shadow:
+    0 0 50px red,
+    0 0 120px darkred;
+}
+
+/* Moving Fog */
+
+.fog{
+    position:absolute;
+    width:250%;
+    height:100%;
+    background:url("fog.png") repeat-x;
+    opacity:.30;
+    animation:fogmove 70s linear infinite;
+}
+
+.fog2{
+    animation-duration:95s;
+    opacity:.20;
+    transform:scale(1.2);
+}
+
+@keyframes fogmove{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
+}
+
+/* Eyes */
+
+.eye{
+    position:absolute;
+    width:12px;
+    height:12px;
+    background:red;
+    border-radius:50%;
+    box-shadow:
+    0 0 10px red,
+    0 0 25px red;
+
+    opacity:0;
+}
+
+.eye.left{
+left:28%;
+top:58%;
+}
+
+.eye.right{
+left:30%;
+top:58%;
+}
+
+</style>
 </head>
+
 <body>
-    <h1>Welcome to the officail phantom plaza site</h1>
-    <p>credit to github to letting me create this site</p>
+
+<div class="background"></div>
+
+<div class="moon"></div>
+
+<div class="fog"></div>
+
+<div class="fog fog2"></div>
+
+<div class="eye left"></div>
+<div class="eye right"></div>
+
+<script>
+
+const eyes=document.querySelectorAll(".eye");
+
+function blink(){
+
+eyes.forEach(e=>{
+
+e.style.opacity=1;
+
+});
+
+setTimeout(()=>{
+
+eyes.forEach(e=>{
+
+e.style.opacity=0;
+
+});
+
+},900);
+
+let next=Math.random()*9000+3000;
+
+setTimeout(blink,next);
+
+}
+
+setTimeout(blink,4000);
+
+</script>
+
 </body>
 </html>
